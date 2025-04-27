@@ -1,11 +1,204 @@
-header{
-
+@font-face {
+    font-family: 'Jost';
+    src: url('/fonts/Jost-VariableFont_wght.ttf');
 }
 
-main{
-
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box;
 }
 
-footer{
-    
+html{
+    font-size: 16px;
+}
+
+button{
+    flex: 1;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-family: 'Jost', sans-serif;
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: #4338ca;
+    }
+
+    &:disabled{
+        background-color: #4e46e580;
+    }
+
+    &.back-button{
+        background-color: transparent;
+        border: solid 1px black;
+        color: black;
+        transition: transform .1s;
+
+        &:hover {
+            transform: scale(1.01);
+        }
+    }
+}
+  
+body {
+    -webkit-font-smoothing: antialiased;
+    font-family: 'Jost';
+    color: black;
+    background-color: white;
+    height: 100vh;
+
+    & > #app{
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+        transition: opacity 0.3s ease;
+
+        & > header{
+            background-color: #4338ca;
+            color: white;
+            font-family: 'Jost', sans-serif;
+            padding: 20px;
+            text-align: center;
+          
+            & > h1 {
+              font-size: 4rem;
+              margin: 0;
+            }
+        }
+
+        & > main{
+            font-family: 'Jost', sans-serif;
+            padding: 30px;
+            box-sizing: content-box;
+            display: flex;
+            justify-content: center;
+            flex-grow: 1;
+
+            & > .tale-content{
+                max-width: 600px;
+                width: 100%;
+                text-align: center;
+
+                & > h1{
+                    font-size: 2rem;
+                    margin-bottom: 1rem;
+                    color: #333;
+                }
+
+                & > p{
+                    font-size: 1.125rem;
+                    color: #555;
+                    margin-bottom: 2rem;
+                }
+
+                & > img{
+                    width: 100%;
+                    height: auto;
+                    border-radius: 20px;
+                    margin-bottom: 2rem;
+                }
+
+                & > audio{
+                    width: 100%;
+                    margin-bottom: 2rem;
+                }
+
+                & > .controls{
+                    display: flex;
+                    justify-content: space-between;
+                    gap: 1rem;
+                    margin-bottom: 1rem;
+                }
+            }
+
+            & > .main-page{
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+                width: 100%;
+
+                & > h1{
+                    font-size: 2rem;
+                    margin: 0;
+                    text-align: center;
+                }
+
+                & > .cards{
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 25px;
+
+                    & > .tale-card{
+                        display: flex;
+                        height: 200px;
+                        width: 800px;
+                        gap: 20px;
+                        cursor: pointer;
+                        border-radius: 10px;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+                        &:hover{
+                            transform: scale(1.01);
+                            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+                        }
+
+                        & > img{
+                            height: 100%;
+                            width: auto;
+                            border-radius: 10px;
+                        }
+
+                        & > .card-text{
+                            display: flex;
+                            flex-direction: column;
+                            gap: 10px;
+                            height: 100%;
+                            padding: 10px 0 10px 0;
+
+                            & > h2{
+                                font-size: 2rem;
+                                margin: 0;
+                            }
+                            
+                            & > p{
+                                font-size: 1.1rem;
+                                margin: 0;
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+
+        & > footer{
+            background-color: #4338ca;
+            color: white;
+            font-family: 'Jost', sans-serif;
+            padding: 20px;
+            text-align: center;
+
+            & > p {
+                font-size: 1.5em;
+                margin: 0;
+            }
+        }
+    }      
+}  
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity 0.5s ease;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+.fade-enter-to, .fade-leave-from {
+  opacity: 1;
 }

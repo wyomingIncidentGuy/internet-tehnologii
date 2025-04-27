@@ -4,12 +4,75 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Проект</title>
-    <script src="https://unpkg.com/vue@3.2.47/dist/vue.global.prod.js"></script>
+    <style>
+      [v-cloak] {
+          display: none;
+      }
+    </style>
   </head>
   <body>
-    <header></header>
-    <main></main>
-    <footer></footer>
-    <script type="module" src="/src/main.js"></script>
+    <div id="app" v-cloak>
+      <header>
+        <h1>Сказки для детей</h1>
+      </header>
+      <main>
+        <transition name="fade" mode="out-in">
+          <div 
+            v-if="currentChapterIndex !== null"
+            :key="currentChapterIndex"
+            class="tale-content"
+          >
+            <h1>{{ currentChapter.title }}</h1>
+            <p>{{ currentChapter.description }}</p>
+            <img :src="currentChapter.image" alt="tale-image" :title="currentChapter.title" />
+            
+            <audio 
+              :src="currentChapter.audio"
+              controls
+              @ended="nextChapter"
+            ></audio>
+
+            <div class="controls">
+              <button 
+                :disabled="currentChapterIndex === 0"
+                @click="prevChapter"
+              >Предыдущая глава</button>
+              <button 
+                :disabled="currentChapterIndex === chapters.length - 1"
+                @click="nextChapter"
+              >Следующая глава</button>
+            </div>
+            <button 
+              class="back-button"
+              @click="currentChapterIndex = null"
+            >Назад к списку глав</button>
+          </div>
+
+          <div v-else class="main-page">
+            <h1>Сказки для детей</h1>
+            <div class="cards">
+              <div 
+                v-for="(chapter, index) in chapters"
+                :key="index" 
+                class="tale-card"
+                @click="currentChapterIndex = index"
+              >
+                <img :src="chapter.image" alt="tale-image" :title="chapter.title" />
+                <div class="card-text">
+                  <h2>{{ chapter.title }}</h2>
+                  <p>{{ chapter.description }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </transition>
+      </main>
+      <footer>
+        <p>© 2025 Все права защищены</p>
+      </footer>
+    </div>
+    
+    <script src="https://unpkg.com/vue@3.2.47/dist/vue.global.prod.js"></script>
+    <script type="module" src="/src/main.js" defer></script>
   </body>
 </html>
